@@ -4,13 +4,13 @@ TAP_FAIL_COUNT=0
 
 tap_pass() {
 	TAP_TEST_COUNT=$((TAP_TEST_COUNT + 1))
-	echo "ok $TAP_TEST_COUNT $1"
+	echo "ok $TAP_TEST_COUNT${1:+ $1}"
 }
 
 tap_fail() {
 	TAP_TEST_COUNT=$((TAP_TEST_COUNT + 1))
 	TAP_FAIL_COUNT=$((TAP_FAIL_COUNT + 1))
-	echo "not ok $TAP_TEST_COUNT $1"
+	echo "not ok $TAP_TEST_COUNT${1:+ $1}"
 }
 
 tap_end() {
