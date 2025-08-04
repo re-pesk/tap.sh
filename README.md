@@ -1,8 +1,10 @@
+# tap.sh
+
 `tap.sh` is a POSIX-compliant test library for shell code. It emits [Test Anything Protocol](https://testanything.org/tap-specification.html) output, so you can run the your unit tests with any TAP-compatible test harness.
 
 It comes with these functions:
 
-```
+```text
 tap_pass [description]           - pass a test
 tap_fail [description]           - fail a test
 tap_ok   pass_flag [description] - pass a test if pass_flag equals 0, else fail
@@ -10,12 +12,12 @@ tap_cmp  got exp [description]   - pass a test if got string equals exp, else fa
 tap_end  [num-tests]             - print the test plan and exit
 ```
 
-Alternatives
-------------
+## Alternatives
+
 The TAP website has a list of [shell test libraries](https://testanything.org/producers.html#shell) ("producers").
 
-Tutorial
---------
+## Tutorial
+
 Imagine we have written a shell library called `examples/hello/hello.sh`. It has one function, which by default prints "Hello, World!":
 
 ```sh
@@ -49,7 +51,7 @@ tap_end
 
 We can run the test script from the command line:
 
-```
+```text
 ./examples/hello/hello-test.sh 
 ok 1 hello
 1..1
@@ -57,7 +59,7 @@ ok 1 hello
 
 This prints "ok" as our test passed! It also prints the number of tests run, so we can be sure all of our test script code was executed. However all this script does is emit TAP output. We can run it with a test harness which will interpret the output and tell us if the test passed or not. Perl's [prove](https://perldoc.perl.org/prove) is an easy harness to run and usually comes with Perl. You might already have it installed.
 
-```
+```text
 $ prove ./examples/hello/hello-test.sh
 ./examples/hello/hello-test.sh .. ok
 All tests successful.
@@ -93,7 +95,7 @@ tap_end 2
 
 Test #2 checks that calling `hello` with "you" emits "Hello, you!" instead of the default. Instead of an if/else block, it calls `tap_ok` with a success flag to pass or fail the test. It also calls `tap_end` with the number of tests to ensure we ran both tests. Running it with `prove -v` shows us the individual tests run, as well as a summary:
 
-```
+```text
 $ prove -v examples/hello/hello-test.sh
 examples/hello/hello-test.sh ..
 ok 1 hello
@@ -132,7 +134,7 @@ tap_end 2
 
 Re-running the tests, now we get some actionable output:
 
-```
+```text
 $ prove -v examples/hello/hello-test.sh 
 examples/hello/hello-test.sh .. 
 ok 1 hello
@@ -160,7 +162,7 @@ hello() {
 
 And now the tests pass:
 
-```
+```text
 $ prove -v examples/hello/hello-test.sh
 examples/hello/hello-test.sh ..
 ok 1 hello
