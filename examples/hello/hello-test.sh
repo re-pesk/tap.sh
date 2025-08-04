@@ -11,13 +11,24 @@ DIR_SRC="$( cd "$DIR_CUR/../../" && pwd )"
 . "$DIR_CUR/hello.sh"
 
 
-# test #1 does hello() print the expected output?
-hello_out=$(hello)
-tap_cmp "$hello_out" "Hello, World!" "hello"
+test_1() {
+	# test #1 does hello() print the expected output?
+	hello_out=$(hello)
+	tap_cmp "$hello_out" "Hello, World!" "hello"
+}
 
-# test #2 does hello "you" print the expected output?
-hello_out=$(hello "you")
-tap_cmp "$hello_out" "Hello, you!" "hello 'you'"
+test_2() {
+	# test #2 does hello "you" print the expected output?
+	hello_out=$(hello "you")
+	tap_cmp "$hello_out" "Hello, you!" "hello 'you'"
+}
 
-# print the test plan
-tap_end 2
+tests() {
+	test_1
+	test_2
+	echo
+	# print the test plan
+	tap_end 2
+}
+
+tests
