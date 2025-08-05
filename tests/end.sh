@@ -9,13 +9,11 @@
 # dont't do that in your code
 # ###########################
 
-# try tap.sh from the current directory first,
-# fallback to an installed version
-if [ -x "$PWD/tap.sh" ]; then
-	. "$PWD/tap.sh"
-else
-	. tap.sh
-fi
+# locate source directory
+DIR_SRC="$( cd "$( dirname "${0}" )/../" && pwd )"
+
+. "$DIR_SRC/tap.sh"
+
 
 # we need more than one passed test to make sure, that the values in
 # the plan line have the correct order and tap_end returns success

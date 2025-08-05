@@ -1,8 +1,15 @@
 #!/bin/sh
 
 # import our test functions and our hello function
-. "$PWD/tap.sh"
-. "$PWD/examples/hello/hello.sh"
+
+# locate source directory
+DIR_CUR="$( cd "$( dirname "${0}" )" && pwd )"
+
+DIR_SRC="$( cd "$DIR_CUR/../../" && pwd )"
+
+. "$DIR_SRC/tap.sh"
+. "$DIR_CUR/hello.sh"
+
 
 # test #1 does hello() print the expected output?
 hello_out=$(hello)

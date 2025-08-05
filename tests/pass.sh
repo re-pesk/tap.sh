@@ -1,5 +1,9 @@
 #!/bin/sh
-. "$PWD/tap.sh"
+
+# locate source directory
+DIR_SRC="$( cd "$( dirname "${0}" )/../" && pwd )"
+
+. "$DIR_SRC/tap.sh"
 
 test_count=0
 test_output() {
