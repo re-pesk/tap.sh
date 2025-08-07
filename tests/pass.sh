@@ -5,14 +5,19 @@ DIR_SRC="$( cd "$( dirname "${0}" )/../" && pwd )"
 
 . "$DIR_SRC/tap.sh"
 
+log_header "pass.sh"
+
 test_count=0
 test_output() {
 	test_count=$((test_count + 1))
 	out=$(tap_pass "$1")
-	[ "$out" != "$2" ] && printf "not "
-	echo "ok $test_count${1:+ $1} ($2 == $out)"
+	if [ "$out" != "$2" ]; then 
+		log_failure "not ok $test_count${1:+ $1} ($2 == $out)\n"
+		return 1
+	fi
+	log_success "ok $test_count${1:+ $1} ($2 == $out)\n"
 }
 
-test_output "" "ok 1"
-test_output "with expression" "ok 1 with expression"
-echo '1..2'
+test_output "" "$(log_success "ok 1")"
+test_output "with expression" "$(log_success "ok 1 with expression")"
+log_text "1..2\n"
